@@ -18,10 +18,8 @@ int main(void) {
     // If the current character is a space, a new line,
     // or a tab, coming after an ordinary character
     // terminate the string by placing '\0' in the current
-
-    // PLACE YOUR CODE HERE
-    if (current_char == " "){
-      current_char = '\0';
+    if (*current_char == ' ' || *current_char == '\n' || *current_char == ' '){
+      *current_char = '\0';
       prev_char_not_ordinary = 1;
     }
 
@@ -29,13 +27,14 @@ int main(void) {
     // after a special character save the pointer to it in
     // the words[] array.
     else if (prev_char_not_ordinary) {
-      words[i] = &current_char;
+      words[i] = current_char;
+      i++;
       prev_char_not_ordinary = 0;
     }
     // Move the pointer in buff by one place.
     *current_char++;
   }
-  *current_char = '\0';
+  current_char = '\0';
   printf("\n");
 
   // Print out all the detected words in the stdin.
